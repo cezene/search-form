@@ -1,7 +1,23 @@
 import React, { useState, useEffect } from "react";
 
+type FormState = {
+  questions: {
+    attribute: string;
+    id: number;
+    option_set: {
+      id: number;
+      option_type: string;
+      order: number;
+      question: number;
+      text: string;
+    }[];
+    order: number;
+    text: string;
+  }[];
+};
+
 const Form = () => {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<FormState| null>(null);
 
   useEffect(() => {
     const getQuestions = () => {
@@ -13,7 +29,7 @@ const Form = () => {
     };
     getQuestions();
   }, []);
-  console.log(questions)
+  console.log(questions?.questions);
   return (
     <div>
       <h1>Formulário</h1>
